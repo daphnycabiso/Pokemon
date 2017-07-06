@@ -26,30 +26,28 @@ import java.util.ArrayList;
  * Created by Lenovo on 7/6/2017.
  */
 
-public class MoveActivity extends AppCompatActivity {
+public class PokedexActivity extends AppCompatActivity {
 
-    String JsonURLMove = "http://pokeapi.co/api/v2/move/";
-    private ArrayList moves;
+    String JsonURLUtility = "https://pokeapi.co/api/v2/pokedex/";
+    private ArrayList utility;
     private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_move);
+        setContentView(R.layout.activity_pokedex);
 
-        recyclerView = (RecyclerView) findViewById(R.id.card_recycler_view1);
+        recyclerView = (RecyclerView) findViewById(R.id.card_recycler_view3);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        moves = new ArrayList<>();
 
+        utility = new ArrayList<>();
         sendRequest();
 
-        Log.d("Inside on create", "true");
     }
 
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
@@ -63,33 +61,33 @@ public class MoveActivity extends AppCompatActivity {
             case R.id.menu_pokemon:
                 Toast.makeText(this, "Pokemon selected", Toast.LENGTH_SHORT)
                         .show();
-                Intent intent4 = new Intent(MoveActivity.this, MainActivity.class);
-                MoveActivity.this.startActivity(intent4);
+                Intent intent4 = new Intent(PokedexActivity.this, MainActivity.class);
+                PokedexActivity.this.startActivity(intent4);
                 break;
             // action with ID action_settings was selected
             case R.id.menu_items:
                 Toast.makeText(this, "Items selected", Toast.LENGTH_SHORT)
                         .show();
-                Intent intent = new Intent(MoveActivity.this, ItemActivity.class);
-                MoveActivity.this.startActivity(intent);
+                Intent intent = new Intent(PokedexActivity.this, ItemActivity.class);
+                PokedexActivity.this.startActivity(intent);
                 break;
             case R.id.menu_moves:
                 Toast.makeText(this, "moves selected", Toast.LENGTH_SHORT)
                         .show();
-                Intent intent1 = new Intent(MoveActivity.this, MoveActivity.class);
-                MoveActivity.this.startActivity(intent1);
+                Intent intent1 = new Intent(PokedexActivity.this, MoveActivity.class);
+                PokedexActivity.this.startActivity(intent1);
                 break;
             case R.id.menu_generations:
-                Toast.makeText(this, "Generation selected", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "location selected", Toast.LENGTH_SHORT)
                         .show();
-                Intent intent2 = new Intent(MoveActivity.this, GenerationActivity.class);
-                MoveActivity.this.startActivity(intent2);
+                Intent intent2 = new Intent(PokedexActivity.this, GenerationActivity.class);
+                PokedexActivity.this.startActivity(intent2);
                 break;
             case R.id.menu_pokedex:
                 Toast.makeText(this, "Pokedex selected", Toast.LENGTH_SHORT)
                         .show();
-                Intent intent3 = new Intent(MoveActivity.this, PokedexActivity.class);
-                MoveActivity.this.startActivity(intent3);
+                Intent intent3 = new Intent(PokedexActivity.this, PokedexActivity.class);
+                PokedexActivity.this.startActivity(intent3);
                 break;
             default:
                 break;
@@ -103,7 +101,7 @@ public class MoveActivity extends AppCompatActivity {
         Log.d("Inside sendRequest", "true");
     }
 
-    JsonObjectRequest obreq = new JsonObjectRequest(Request.Method.GET, JsonURLMove, null,
+    JsonObjectRequest obreq = new JsonObjectRequest(Request.Method.GET, JsonURLUtility, null,
             new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
@@ -115,11 +113,11 @@ public class MoveActivity extends AppCompatActivity {
                             JSONObject tempObj = obj.getJSONObject(init);
 //                            Move mMove = new Move();
 //                            mMove.setmName(tempObj.getString("name"));
-                            moves.add(tempObj.getString("name"));
-//                            Toast.makeText(MoveActivity.this, tempObj.getString("name"), Toast.LENGTH_SHORT).show();
+                            utility.add(tempObj.getString("name"));
+//                            Toast.makeText(ItemActivity.this, tempObj.getString("name"), Toast.LENGTH_SHORT).show();
                         }
 
-                        RecyclerView.Adapter adapter = new DataAdapter(moves);
+                        RecyclerView.Adapter adapter = new DataAdapter(utility);
                         recyclerView.setAdapter(adapter);
                     } catch (JSONException e) {
                         e.printStackTrace();

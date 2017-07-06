@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -28,10 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     private GridView mGridViewPokemons;
     private Adapter pokemonListAdapter;
-    private List<Pokemon> pokeList;
+    private List<Pokemon> pokemonList;
 
-
-    Button moves, items, mpokemon;
 
 
     @Override
@@ -40,47 +38,67 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mGridViewPokemons = (GridView) findViewById(R.id.gridView_pokemons);
-        pokeList = new ArrayList<Pokemon>();
-        pokemonListAdapter = new Adapter(MainActivity.this, pokeList);
+        pokemonList = new ArrayList<Pokemon>();
+        pokemonListAdapter = new Adapter(MainActivity.this, pokemonList);
         mGridViewPokemons.setAdapter(pokemonListAdapter);
 
         sendRequest();
 
 
     }
-    private void sendRequest() {
-        Controller.getInstance(this).add(obreq);
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
-
-
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.menu_items:
-                Intent intent = new Intent(this, ItemActivity.class);
-                this.startActivity(intent);
+        switch (item.getItemId()) {
+            // action with ID action_refresh was selected
+            case R.id.menu_pokemon:
+                Toast.makeText(this, "Pokemon selected", Toast.LENGTH_SHORT)
+                        .show();
+                Intent intent4 = new Intent(MainActivity.this, MainActivity.class);
+                MainActivity.this.startActivity(intent4);
                 break;
-            case R.id.menu_move:
-                // another startActivity, this is for item with id "menu_item2"
-                intent = new Intent(this, MoveActivity.class);
-                this.startActivity(intent);
+            // action with ID action_settings was selected
+            case R.id.menu_items:
+                Toast.makeText(this, "Items selected", Toast.LENGTH_SHORT)
+                        .show();
+                Intent intent = new Intent(MainActivity.this, ItemActivity.class);
+                MainActivity.this.startActivity(intent);
+                break;
+            case R.id.menu_moves:
+                Toast.makeText(this, "moves selected", Toast.LENGTH_SHORT)
+                        .show();
+                Intent intent1 = new Intent(MainActivity.this, MoveActivity.class);
+                MainActivity.this.startActivity(intent1);
+                break;
+            case R.id.menu_generations:
+                Toast.makeText(this, "Generations selected", Toast.LENGTH_SHORT)
+                        .show();
+                Intent intent2 = new Intent(MainActivity.this, GenerationActivity.class);
+                MainActivity.this.startActivity(intent2);
+                break;
+            case R.id.menu_pokedex:
+                Toast.makeText(this, "Pokedex selected", Toast.LENGTH_SHORT)
+                        .show();
+                Intent intent3 = new Intent(MainActivity.this, PokedexActivity.class);
+                MainActivity.this.startActivity(intent3);
                 break;
             default:
-                return super.onOptionsItemSelected(item);
+                break;
         }
 
         return true;
     }
 
-
+    private void sendRequest() {
+        Controller.getInstance(this).add(obreq);
+    }
 
     JsonObjectRequest obreq = new JsonObjectRequest(Request.Method.GET, JsonURLPokemon, null,
             new Response.Listener<JSONObject>() {
@@ -94,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                             Pokemon poke = new Pokemon();
                             poke.setPokeName(tempObj.getString("name"));
                             poke.setImgURL(tempObj.getString("url"));
-                            pokeList.add(poke);
+                            pokemonList.add(poke);
                         }
 
                         pokemonListAdapter.notifyDataSetChanged();

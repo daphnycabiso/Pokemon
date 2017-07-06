@@ -18,8 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MoveActivity" />
-        <activity android:name=".ItemActivity"></activity>
+            <activity android:name=".MoveActivity" />
+            <activity android:name=".ItemActivity"/>
+            <activity android:name=".GenerationActivity" />
+            <activity android:name=".PokedexActivity">
+        </activity>
     </application>
 
 </manifest>

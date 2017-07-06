@@ -4,15 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cabiso.daphny.com.pokemon.MainActivity">
+    android:background="#ffc4c4"
+    tools:context="cabiso.daphny.com.pokemon.MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout">
+
+    </LinearLayout>
 
     <GridView
         android:id="@+id/gridView_pokemons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
         android:horizontalSpacing="10dp"
         android:numColumns="2"
-        android:gravity="center_vertical"
-        android:layout_centerHorizontal="true" />
+        android:verticalSpacing="10dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="44dp" />
+
 </RelativeLayout>
+
