@@ -57,14 +57,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // action with ID action_refresh was selected
             case R.id.menu_pokemon:
                 Toast.makeText(this, "Pokemon selected", Toast.LENGTH_SHORT)
                         .show();
                 Intent intent4 = new Intent(MainActivity.this, MainActivity.class);
                 MainActivity.this.startActivity(intent4);
                 break;
-            // action with ID action_settings was selected
             case R.id.menu_items:
                 Toast.makeText(this, "Items selected", Toast.LENGTH_SHORT)
                         .show();
@@ -72,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(intent);
                 break;
             case R.id.menu_moves:
-                Toast.makeText(this, "moves selected", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Moves selected", Toast.LENGTH_SHORT)
                         .show();
                 Intent intent1 = new Intent(MainActivity.this, MoveActivity.class);
                 MainActivity.this.startActivity(intent1);

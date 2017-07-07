@@ -58,14 +58,12 @@ public class ItemActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // action with ID action_refresh was selected
             case R.id.menu_pokemon:
                 Toast.makeText(this, "Pokemon selected", Toast.LENGTH_SHORT)
                         .show();
                 Intent intent4 = new Intent(ItemActivity.this, MainActivity.class);
                 ItemActivity.this.startActivity(intent4);
                 break;
-            // action with ID action_settings was selected
             case R.id.menu_items:
                 Toast.makeText(this, "Items selected", Toast.LENGTH_SHORT)
                         .show();
@@ -73,7 +71,7 @@ public class ItemActivity extends AppCompatActivity{
                 ItemActivity.this.startActivity(intent);
                 break;
             case R.id.menu_moves:
-                Toast.makeText(this, "moves selected", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Moves selected", Toast.LENGTH_SHORT)
                         .show();
                 Intent intent1 = new Intent(ItemActivity.this, MoveActivity.class);
                 ItemActivity.this.startActivity(intent1);
@@ -112,12 +110,8 @@ public class ItemActivity extends AppCompatActivity{
 
                         for (int init = 0; init < obj.length(); init++) {
                             JSONObject tempObj = obj.getJSONObject(init);
-//                            Move mMove = new Move();
-//                            mMove.setmName(tempObj.getString("name"));
                             items.add(tempObj.getString("name"));
-//                            Toast.makeText(ItemActivity.this, tempObj.getString("name"), Toast.LENGTH_SHORT).show();
                         }
-
                         RecyclerView.Adapter adapter = new DataAdapter(items);
                         recyclerView.setAdapter(adapter);
                     } catch (JSONException e) {

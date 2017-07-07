@@ -58,14 +58,13 @@ public class GenerationActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            // action with ID action_refresh was selected
+
             case R.id.menu_pokemon:
                 Toast.makeText(this, "Pokemon selected", Toast.LENGTH_SHORT)
                         .show();
                 Intent intent = new Intent(GenerationActivity.this, MainActivity.class);
                 GenerationActivity.this.startActivity(intent);
                 break;
-            // action with ID action_settings was selected
             case R.id.menu_items:
                 Toast.makeText(this, "Items selected", Toast.LENGTH_SHORT)
                         .show();
@@ -73,7 +72,7 @@ public class GenerationActivity extends AppCompatActivity {
                 GenerationActivity.this.startActivity(intent4);
                 break;
             case R.id.menu_moves:
-                Toast.makeText(this, "moves selected", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Moves selected", Toast.LENGTH_SHORT)
                         .show();
                 Intent intent1 = new Intent(GenerationActivity.this, MoveActivity.class);
                 GenerationActivity.this.startActivity(intent1);
@@ -113,10 +112,7 @@ public class GenerationActivity extends AppCompatActivity {
 
                         for (int init = 0; init < obj.length(); init++) {
                             JSONObject tempObj = obj.getJSONObject(init);
-//                            Move mMove = new Move();
-//                            mMove.setmName(tempObj.getString("name"));
                             location.add(tempObj.getString("name"));
-//                            Toast.makeText(ItemActivity.this, tempObj.getString("name"), Toast.LENGTH_SHORT).show();
                         }
 
                         RecyclerView.Adapter adapter = new DataAdapter(location);
